@@ -1,0 +1,244 @@
+/* mini reset */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* declare variables */
+
+::selection {
+  background: #ffdd00; /* WebKit/Blink Browsers */
+}
+
+:root {
+  /* Graceful degradation  = we can't use CSS variables because of IE, but we can use these hex values from the HMRC designs system :)  */
+
+  /* Text color */
+  --dwp-text-colour: #0b0c0c;
+  --dwp-secondary-text-colour: #505a5f;
+  --dwp-text-colour-light: #ffffff;
+
+  /* Links */
+  --dwp-link-colour: #1d70b8;
+  --dwp-link-hover-colour: #003078;
+  --dwp-link-visited-colour: #4c2c92;
+  --dwp-link-active-colour: #0b0c0c;
+
+  /* Border */
+  --dwp-border-colour: #b1b4b6;
+  --dwp-input-border-colour: #0b0c0c;
+
+  /* Focus state */
+  --dwp-focus-colour: #ffdd00;
+
+  /* Only use this colour to indicate which element is focused on. For example, when a user tabs to an element with their keyboard. */
+  --dwp-focus-text-colour: #0b0c0c;
+
+  /* Error state */
+  --dwp-error-colour: #d4351c;
+
+  /* Brand colour */
+  --dwp-brand-colour: #1d70b8;
+}
+
+/* upgrade older browsers */
+.browser__upgrade {
+  font-size: 20px;
+  color: #1d70b8;
+  letter-spacing: 1px;
+  font-style: italic;
+  text-align: center;
+}
+
+/* utilities  & functional CSS classes we can sprinkle around */
+
+.text__center {
+  text-align: center;
+}
+.text__left {
+  text-align: left;
+}
+
+.text__right {
+  text-align: right;
+}
+
+/* spacing upped by 10px increments */
+.p-l-1x {
+  padding-left: 10px;
+}
+
+.p-l-2x {
+  padding-left: 20px;
+}
+
+.p-l-3x {
+  padding-left: 30px;
+}
+
+.d__block {
+  display: block;
+}
+.color__light {
+  color: #ffffff;
+}
+
+.bg__grey {
+  background: #f8f8f8;
+}
+.center__content {
+  margin: 0 auto;
+}
+
+/* end utilities  ========= */
+
+/* styling css components with BEM classes */
+/* so we can lift/shift and use these again, agnostic of any platform/cms constraints regarding default styling of HTML Elements */
+
+.page {
+  position: relative;
+  width: 100%;
+}
+.page__container {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  max-width: 1024px;
+  /* border: 3px solid red; test boundaries */
+}
+
+.page__row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.page__header {
+  background: #0b0c0c;
+  border-bottom: 10px solid #1d70b8;
+  padding: 1rem 0;
+}
+
+.page__section {
+  padding: 1rem;
+}
+
+.flex__cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  flex-flow: column wrap;
+}
+
+.card__grid {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-auto-rows: minmax(230px, 100%);
+}
+.card__grid:empty{
+ /* if content doesnt load, we are not coverd for accessability using this method */
+}
+
+.card {
+  padding: 1rem;
+  border: 1px solid #0b0c0c;
+  border-radius: 4px;
+  display: flex;
+  flex-wrap: wrap;
+
+  max-width: 320px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.card:hover,
+.card:focus {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  border: 2px solid #003078;
+  transition: border-width 0.1s linear;
+}
+
+.card__content {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+
+.disclaimer__copy{
+   color: #8a0000e6;
+   margin-bottom: 1.0rem;
+}
+
+.card__content {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.card__content__label {
+  font-weight: bold;
+}
+
+.copy {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  letter-spacing: 0px;
+  font-weight: 400;
+  line-height: 1;
+  display: block;
+  
+}
+.copy__title {
+  font-size: 1.5rem;
+  text-align: center;
+  
+}
+
+.copy__subtitle {
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: 1.0rem;
+    
+  }
+
+.copy__paragraph {
+  font-size: 1rem;
+  margin-bottom: 1.0rem;
+}
+.copy__fineprint {
+    margin-bottom: 0.5rem;
+  font-size: 0.8rem;
+  font-style: italic;
+}
+.copy__code{
+    color: #8a0000e6;
+
+}
+
+/* media queries */
+/* normally we'd scope view port changes/progressive enhancement to a component, but since we're doing this barebones we'll just add them here */
+
+@media (max-width:980px) {
+  .card__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .card__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    max-width: 100%;
+  }
+}
